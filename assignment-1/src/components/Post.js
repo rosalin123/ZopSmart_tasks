@@ -6,22 +6,22 @@ import { fetchPostComments } from '../actions/postActions';
 import { connect } from 'react-redux';
 
 class Post extends Component {
-  componentWillMount = async () => {
-    await this.props.getPost();
-    await this.props.fetchUsers();
-    await this.props.fetchPostComments();
+  componentDidMount = async () => {
+    this.props.fetchUsers();
+    this.props.getPost();
+    this.props.fetchPostComments();
   };
 
   render() {
     console.log('comments', this.props.comments);
     return (
       <div>
+        <h3>{this.props.post.title}</h3>
         {this.props.users
           .filter((user) => user.id === this.props.post.userId)
           .map((user, index) => {
             return <h1 key={index}>{user.username}</h1>;
           })}
-        <h3>{this.props.post.title}</h3>
 
         <p>{this.props.post.body}</p>
 
