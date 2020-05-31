@@ -124,7 +124,7 @@ const mapStateToProps = (state) => ({
   posts: state.UserPosts,
 });
 
-/*export default connect(mapStateToProps, { fetchUsers, fetchUserPosts })(User);*/
-export default connect(mapStateToProps, { fetchUsers, fetchUserPosts })(
-  withStyles(styles)(User)
-);
+export default connect(mapStateToProps, {
+  fetchUsers,
+  fetchUserPosts,
+})(withStyles(styles)(User));

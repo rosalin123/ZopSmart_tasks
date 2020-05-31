@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import UserComponent from './UserComponent';
 import { withStyles } from '@material-ui/core/styles';
+import { clearUserPosts } from '../actions/postActions';
 
 const styles = {
   root: {
@@ -18,6 +19,7 @@ const styles = {
 class Users extends Component {
   componentDidMount = () => {
     this.props.fetchUsers();
+    this.props.clearUserPosts();
   };
 
   render() {
@@ -44,6 +46,6 @@ const mapStateToProps = (state) => ({
   users: state.Users.items,
 });
 
-export default connect(mapStateToProps, { fetchUsers })(
+export default connect(mapStateToProps, { fetchUsers, clearUserPosts })(
   withStyles(styles)(Users)
 );

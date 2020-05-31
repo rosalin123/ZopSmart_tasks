@@ -3,6 +3,9 @@ import {
   GET_POST,
   FETCH_USER_POSTS,
   FETCH_COMMENTS,
+  CLEAR_POST,
+  CLEAR_USER_POSTS,
+  CLEAR_COMMENTS,
 } from '../actions/types';
 import * as posts_api from '../util/posts_api_util';
 
@@ -15,6 +18,18 @@ const fetch_post_comments = (comments) => ({ type: FETCH_COMMENTS, comments });
 const fetch_user_posts = (posts) => ({
   type: FETCH_USER_POSTS,
   posts,
+});
+
+const clear_post = () => ({
+  type: CLEAR_POST,
+});
+
+const clear_comments = () => ({
+  type: CLEAR_COMMENTS,
+});
+
+const clear_user_posts = () => ({
+  type: CLEAR_USER_POSTS,
 });
 
 export const fetchPosts = () => async (dispatch) => {
@@ -36,4 +51,16 @@ export const fetchPostComments = (id) => async (dispatch) => {
 export const fetchUserPosts = (id) => async (dispatch) => {
   let posts = await posts_api.getUserPosts(id);
   dispatch(fetch_user_posts(posts));
+};
+
+export const clearPost = () => (dispatch) => {
+  dispatch(clear_post());
+};
+
+export const clearComments = () => (dispatch) => {
+  dispatch(clear_comments());
+};
+
+export const clearUserPosts = () => (dispatch) => {
+  dispatch(clear_user_posts());
 };
