@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 class Post extends Component {
   componentDidMount = async () => {
-    //this.props.fetchUsers();
+    this.props.fetchUsers();
     this.props.getPost(this.props.match.params.id);
     this.props.fetchPostComments(this.props.match.params.id);
   };

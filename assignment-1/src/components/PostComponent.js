@@ -124,7 +124,11 @@ export default function PostComponent(props) {
             {props.comments.map((comment, index) => {
               return (
                 <Grid item key={index}>
-                  <Comment name={comment.name} body={comment.body} />
+                  <Comment
+                    name={comment.name}
+                    body={comment.body}
+                    email={comment.email}
+                  />
                 </Grid>
               );
             })}
