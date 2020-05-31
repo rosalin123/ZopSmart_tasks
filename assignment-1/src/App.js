@@ -9,6 +9,8 @@ import User from './components/User';
 import { Grid } from '@material-ui/core';
 import Header from './components/header';
 import { makeStyles } from '@material-ui/core';
+import Albums from './components/albums';
+import Photos from './components/photos';
 
 const useStyles = makeStyles({
   contentStyles: {
@@ -30,6 +32,8 @@ function App() {
               <Route exact path="/posts/:id" component={Post} />
               <Route exact path="/users" component={Users} />
               <Route exact path="/users/:id" component={User} />
+              <Route exact path="/albums" component={Albums} />
+              <Route path="/photos/:id" component={Photos} />
             </Grid>
           </Grid>
         </Switch>
