@@ -9,26 +9,29 @@ import {
 } from '../actions/types';
 import * as posts_api from '../util/posts_api_util';
 
-const fetch_posts = (posts) => ({ type: FETCH_POSTS, posts });
+export const fetch_posts = (posts) => ({ type: FETCH_POSTS, posts });
 
-const get_post = (post) => ({ type: GET_POST, post });
+export const get_post = (post) => ({ type: GET_POST, post });
 
-const fetch_post_comments = (comments) => ({ type: FETCH_COMMENTS, comments });
+export const fetch_post_comments = (comments) => ({
+  type: FETCH_COMMENTS,
+  comments,
+});
 
-const fetch_user_posts = (posts) => ({
+export const fetch_user_posts = (posts) => ({
   type: FETCH_USER_POSTS,
   posts,
 });
 
-const clear_post = () => ({
+export const clear_post = () => ({
   type: CLEAR_POST,
 });
 
-const clear_comments = () => ({
+export const clear_comments = () => ({
   type: CLEAR_COMMENTS,
 });
 
-const clear_user_posts = () => ({
+export const clear_user_posts = () => ({
   type: CLEAR_USER_POSTS,
 });
 

@@ -107,6 +107,7 @@ class User extends Component {
                       title={post.title}
                       user={user}
                       body={post.body}
+                      id={post.id}
                     />
                   </Grid>
                 );

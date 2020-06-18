@@ -1,11 +1,11 @@
 import { FETCH_USERS, GET_USER } from '../actions/types';
 import * as users_api from '../util/users_api_util';
 
-const fetch_users = (users) => {
+export const fetch_users = (users) => {
   return { type: FETCH_USERS, users };
 };
 
-const get_user = (user) => {
+export const get_user = (user) => {
   return { type: GET_USER, user };
 };
 
@@ -15,8 +15,8 @@ export const fetchUsers = () => async (dispatch) => {
   dispatch(fetch_users(users));
 };
 
-export const getUser = () => async (dispatch) => {
-  let user = await users_api.getUser();
+export const getUser = (id) => async (dispatch) => {
+  let user = await users_api.getUser(id);
   console.log('user', user);
   dispatch(get_user(user));
 };

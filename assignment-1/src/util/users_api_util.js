@@ -11,9 +11,9 @@ export const fetchUsers = async () => {
   }
 };
 
-export const getUser = async () => {
+export const getUser = async (id) => {
   try {
-    let url = `${baseUrl}/users/1`;
+    let url = `${baseUrl}/users/${id}`;
     let user = await fetch(url, { method: 'GET' });
     let userJson = await user.json();
     return userJson;
