@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { fetchPosts } from '../actions/postActions';
 import { fetchUsers } from '../actions/userActions';
 import { connect } from 'react-redux';
-import GridContainer from './GridContainer';
+import PostsContainer from './postsContainer';
 import { clearComments, clearPost } from '../actions/postActions';
 
 class Posts extends Component {
@@ -13,7 +13,7 @@ class Posts extends Component {
     this.props.clearComments();
   };
   render() {
-    return <GridContainer posts={this.props.posts} users={this.props.users} />;
+    return <PostsContainer posts={this.props.posts} users={this.props.users} />;
   }
 }
 

@@ -17,7 +17,7 @@ const userStyles = makeStyles({
   },
 });
 
-const GridContainer = (props) => {
+const PostsContainer = (props) => {
   const classes = userStyles();
 
   return (
@@ -52,4 +52,4 @@ const GridContainer = (props) => {
     </Grid>
   );
 };
-export default GridContainer;
+export default PostsContainer;
