@@ -1,17 +1,21 @@
-import { FETCH_POSTS, GET_POST, CLEAR_POST } from '../actions/types';
+import {
+  FETCH_POSTS_REQUEST,
+  FETCH_POSTS_SUCCESS,
+  FETCH_POSTS_FAILURE,
+} from '../actions/actionConstants';
 
-const initialState = { items: [], item: {} };
+const initialState = { loading: false, posts: [], error: '' };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_POSTS:
-      return { ...state, items: action.posts };
+    case FETCH_POSTS_REQUEST:
+      return { ...state, loading: true };
 
-    case GET_POST:
-      return { ...state, item: { ...action.post } };
+    case FETCH_POSTS_SUCCESS:
+      return { loading: false, posts: action.posts, error: '' };
 
-    case CLEAR_POST:
-      return { ...state, item: {} };
+    case FETCH_POSTS_FAILURE:
+      return { loading: false, posts: [], error: action.error };
 
     default:
       return state;

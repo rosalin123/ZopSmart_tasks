@@ -1,13 +1,36 @@
-import { FETCH_USER_POSTS, CLEAR_USER_POSTS } from '../actions/types';
+import {
+  FETCH_USER_POSTS_REQUEST,
+  FETCH_USER_POSTS_SUCCESS,
+  FETCH_USER_POSTS_FAILURE,
+  CLEAR_USER_POSTS,
+} from '../actions/actionConstants';
 
-const initialState = [];
+const initialState = { loading: false, posts: [], error: '' };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USER_POSTS:
-      return [...action.posts];
+    case FETCH_USER_POSTS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case FETCH_USER_POSTS_SUCCESS:
+      return {
+        loading: false,
+        posts: action.posts,
+        error: '',
+      };
+    case FETCH_USER_POSTS_FAILURE:
+      return {
+        loading: false,
+        posts: [],
+        error: action.error,
+      };
     case CLEAR_USER_POSTS:
-      return [];
+      return {
+        ...state,
+        posts: [],
+      };
     default:
       return state;
   }

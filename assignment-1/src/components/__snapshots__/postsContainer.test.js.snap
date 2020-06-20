@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header Component Header should render without throwing an error 1`] = `
+exports[`Posts container Component with props Posts Container should render without throwing an error 1`] = `
 <ContextProvider
   value={
     Object {
@@ -32,6 +32,19 @@ exports[`Header Component Header should render without throwing an error 1`] = `
     }
   }
 >
-  <Header />
+  <PostsContainer
+    posts={
+      Array [
+        "post1",
+        "post2",
+      ]
+    }
+    users={
+      Array [
+        "user1",
+        "user2",
+      ]
+    }
+  />
 </ContextProvider>
 `;

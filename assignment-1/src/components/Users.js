@@ -5,6 +5,8 @@ import { Grid } from '@material-ui/core';
 import UserComponent from './UserComponent';
 import { withStyles } from '@material-ui/core/styles';
 import { clearUserPosts } from '../actions/postActions';
+import Loader from './loader';
+import ErrorComponent from './error';
 
 const styles = {
   root: {
@@ -23,10 +25,14 @@ class Users extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-    return (
+    const { classes, users, loading, error } = this.props;
+    return loading === true ? (
+      <Loader />
+    ) : error !== '' ? (
+      <ErrorComponent message="Something's not right.." />
+    ) : (
       <Grid container spacing={3} direction="column" className={classes.root}>
-        {this.props.users.map((user, index) => {
+        {users.map((user, index) => {
           return (
             <Grid item key={index} className={classes.userStyles}>
               <UserComponent
@@ -43,7 +49,9 @@ class Users extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  users: state.Users.items,
+  loading: state.Users.loading,
+  error: state.Users.error,
+  users: state.Users.users,
 });
 
 export default connect(mapStateToProps, { fetchUsers, clearUserPosts })(

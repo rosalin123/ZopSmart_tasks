@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header Component Header should render without throwing an error 1`] = `
+exports[`Posts Component Posts should render without throwing an error 1`] = `
 <ContextProvider
   value={
     Object {
@@ -32,6 +32,6 @@ exports[`Header Component Header should render without throwing an error 1`] = `
     }
   }
 >
-  <Header />
+  <Connect(Posts) />
 </ContextProvider>
 `;

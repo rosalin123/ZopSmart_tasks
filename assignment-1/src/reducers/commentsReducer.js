@@ -1,14 +1,25 @@
-import { FETCH_COMMENTS, CLEAR_COMMENTS } from '../actions/types';
+import {
+  FETCH_COMMENTS_REQUEST,
+  FETCH_COMMENTS_SUCCESS,
+  FETCH_COMMENTS_FAILURE,
+  CLEAR_COMMENTS,
+} from '../actions/actionConstants';
 
-const initialState = [];
+const initialState = { loading: false, comments: [], error: '' };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_COMMENTS:
-      return [...action.comments];
+    case FETCH_COMMENTS_REQUEST:
+      return { ...state, loading: true };
+
+    case FETCH_COMMENTS_SUCCESS:
+      return { loading: false, comments: action.comments, error: '' };
+
+    case FETCH_COMMENTS_FAILURE:
+      return { loading: false, comments: [], error: action.error };
 
     case CLEAR_COMMENTS:
-      return [];
+      return { ...state, comments: [] };
 
     default:
       return state;

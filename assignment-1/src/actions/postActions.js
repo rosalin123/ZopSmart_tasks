@@ -1,69 +1,132 @@
-import {
-  FETCH_POSTS,
-  GET_POST,
-  FETCH_USER_POSTS,
-  FETCH_COMMENTS,
-  CLEAR_POST,
-  CLEAR_USER_POSTS,
-  CLEAR_COMMENTS,
-} from '../actions/types';
-import * as posts_api from '../util/posts_api_util';
+import * as actionTypes from '../actions/actionConstants';
+import * as posts_api from '../Utils/postsApiUtil';
 
-export const fetch_posts = (posts) => ({ type: FETCH_POSTS, posts });
-
-export const get_post = (post) => ({ type: GET_POST, post });
-
-export const fetch_post_comments = (comments) => ({
-  type: FETCH_COMMENTS,
-  comments,
+//all posts
+export const fetchPostsRequest = () => ({
+  type: actionTypes.FETCH_POSTS_REQUEST,
 });
 
-export const fetch_user_posts = (posts) => ({
-  type: FETCH_USER_POSTS,
+export const fetchPostsSuccess = (posts) => ({
+  type: actionTypes.FETCH_POSTS_SUCCESS,
   posts,
 });
 
-export const clear_post = () => ({
-  type: CLEAR_POST,
+export const fetchPostsFailure = (error) => ({
+  type: actionTypes.FETCH_POSTS_FAILURE,
+  error,
 });
 
-export const clear_comments = () => ({
-  type: CLEAR_COMMENTS,
+//a single post
+export const getPostRequest = () => ({
+  type: actionTypes.GET_POST_REQUEST,
 });
 
-export const clear_user_posts = () => ({
-  type: CLEAR_USER_POSTS,
+export const getPostSuccess = (post) => ({
+  type: actionTypes.GET_POST_SUCCESS,
+  post,
 });
+
+export const getPostFailure = (error) => ({
+  type: actionTypes.GET_POST_FAILURE,
+  error,
+});
+
+//comments
+export const fetchCommentsRequest = () => ({
+  type: actionTypes.FETCH_COMMENTS_REQUEST,
+});
+
+export const fetchCommentsSuccess = (comments) => ({
+  type: actionTypes.FETCH_COMMENTS_SUCCESS,
+  comments,
+});
+
+export const fetchCommentsFailure = (error) => ({
+  type: actionTypes.FETCH_COMMENTS_FAILURE,
+  error,
+});
+
+//user's posts
+
+export const fetchUserPostsRequest = () => ({
+  type: actionTypes.FETCH_USER_POSTS_REQUEST,
+});
+export const fetchUserPostsSuccess = (posts) => ({
+  type: actionTypes.FETCH_USER_POSTS_SUCCESS,
+  posts,
+});
+export const fetchUserPostsFailure = (error) => ({
+  type: actionTypes.FETCH_USER_POSTS_FAILURE,
+  error,
+});
+
+//clearing posts and comments
+export const clearPostRequest = () => ({
+  type: actionTypes.CLEAR_POST,
+});
+
+export const clearCommentsRequest = () => ({
+  type: actionTypes.CLEAR_COMMENTS,
+});
+
+export const clearUserPostsRequest = () => ({
+  type: actionTypes.CLEAR_USER_POSTS,
+});
+
+//async action creators
 
 export const fetchPosts = () => async (dispatch) => {
-  let posts = await posts_api.fetchPosts();
-  console.log(posts);
-  dispatch(fetch_posts(posts));
+  dispatch(fetchPostsRequest());
+  let posts;
+  try {
+    posts = await posts_api.fetchPosts();
+    return dispatch(fetchPostsSuccess(posts));
+  } catch (err) {
+    dispatch(fetchPostsFailure(err));
+  }
 };
 
 export const getPost = (id) => async (dispatch) => {
-  let post = await posts_api.getPost(id);
-  dispatch(get_post(post));
+  dispatch(getPostRequest());
+  let post;
+  try {
+    post = await posts_api.getPost(id);
+    return dispatch(getPostSuccess(post));
+  } catch (err) {
+    dispatch(getPostFailure(err));
+  }
 };
 
 export const fetchPostComments = (id) => async (dispatch) => {
-  let comments = await posts_api.getPostComments(id);
-  dispatch(fetch_post_comments(comments));
+  dispatch(fetchCommentsRequest());
+  let comments;
+  try {
+    comments = await posts_api.getPostComments(id);
+    return dispatch(fetchCommentsSuccess(comments));
+  } catch (err) {
+    dispatch(fetchCommentsFailure(err));
+  }
 };
 
 export const fetchUserPosts = (id) => async (dispatch) => {
-  let posts = await posts_api.getUserPosts(id);
-  dispatch(fetch_user_posts(posts));
+  dispatch(fetchUserPostsRequest());
+  let posts;
+  try {
+    posts = await posts_api.getUserPosts(id);
+    return dispatch(fetchUserPostsSuccess(posts));
+  } catch (err) {
+    dispatch(fetchUserPostsFailure(err));
+  }
 };
 
 export const clearPost = () => (dispatch) => {
-  dispatch(clear_post());
+  dispatch(clearPostRequest());
 };
 
 export const clearComments = () => (dispatch) => {
-  dispatch(clear_comments());
+  dispatch(clearCommentsRequest());
 };
 
 export const clearUserPosts = () => (dispatch) => {
-  dispatch(clear_user_posts());
+  dispatch(clearUserPostsRequest());
 };

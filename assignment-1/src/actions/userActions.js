@@ -1,22 +1,61 @@
-import { FETCH_USERS, GET_USER } from '../actions/types';
-import * as users_api from '../util/users_api_util';
+import {
+  FETCH_USERS_SUCCESS,
+  FETCH_USERS_REQUEST,
+  FETCH_USERS_FAILURE,
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_FAILURE,
+  CLEAR_USER,
+} from '../actions/actionConstants';
+import * as users_api from '../Utils/usersApiUtil';
 
-export const fetch_users = (users) => {
-  return { type: FETCH_USERS, users };
-};
+//all users
 
-export const get_user = (user) => {
-  return { type: GET_USER, user };
-};
+export const fetchUsersRequest = () => ({ type: FETCH_USERS_REQUEST });
+
+export const fetchUsersSuccess = (users) => ({
+  type: FETCH_USERS_SUCCESS,
+  users,
+});
+export const fetchUsersFailure = (error) => ({
+  type: FETCH_USERS_FAILURE,
+  error,
+});
+
+//single user
+export const getUserRequest = () => ({ type: GET_USER_REQUEST });
+
+export const getUserSuccess = (user) => ({ type: GET_USER_SUCCESS, user });
+
+export const getUserFailure = (error) => ({ type: GET_USER_FAILURE, error });
+
+//clearing user
+export const clearUserRequest = () => ({ type: CLEAR_USER });
+
+//async action creators
 
 export const fetchUsers = () => async (dispatch) => {
-  let users = await users_api.fetchUsers();
-  console.log(users);
-  dispatch(fetch_users(users));
+  dispatch(fetchUsersRequest());
+  let users;
+  try {
+    users = await users_api.fetchUsers();
+    return dispatch(fetchUsersSuccess(users));
+  } catch (err) {
+    dispatch(fetchUsersFailure(err));
+  }
 };
 
 export const getUser = (id) => async (dispatch) => {
-  let user = await users_api.getUser(id);
-  console.log('user', user);
-  dispatch(get_user(user));
+  dispatch(getUserRequest());
+  let user;
+  try {
+    user = await users_api.getUser(id);
+    return dispatch(getUserSuccess(user));
+  } catch (err) {
+    dispatch(getUserFailure(err));
+  }
+};
+
+export const clearUser = () => (dispatch) => {
+  dispatch(clearUserRequest());
 };

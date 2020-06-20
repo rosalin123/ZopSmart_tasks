@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PostComponent from './PostComponent';
+import PropTypes from 'prop-types';
 
 const userStyles = makeStyles({
   root: {
@@ -52,4 +53,10 @@ const PostsContainer = (props) => {
     </Grid>
   );
 };
+
+PostsContainer.propTypes = {
+  posts: PropTypes.array,
+  users: PropTypes.array,
+};
+
 export default PostsContainer;
