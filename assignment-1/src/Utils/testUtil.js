@@ -1,7 +1,6 @@
 import checkPropTypes from 'check-prop-types';
 
 export const findbyTestAttr = (component, attr) => {
-  console.log('component', component);
   const wrapper = component.find(`[data-test='${attr}']`);
   return wrapper;
 };

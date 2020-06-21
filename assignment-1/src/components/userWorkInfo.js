@@ -27,15 +27,26 @@ const useStyles = makeStyles({
 function UserWorkInfo({ user }) {
   const classes = useStyles();
   return (
-    <Grid container className={classes.root} direction="column" spacing={4}>
+    <Grid
+      container
+      className={classes.root}
+      direction="column"
+      spacing={4}
+      data-test="userWorkInfoComponent"
+    >
       <Grid item>
-        <Typography className={classes.typographyTitleStyles}>Work</Typography>
+        <Typography
+          className={classes.typographyTitleStyles}
+          data-test="header"
+        >
+          Work
+        </Typography>
         <Grid container spacing={1}>
-          <Grid item>
+          <Grid item data-test="workIcon">
             {' '}
             <WorkIcon />
           </Grid>
-          <Grid item>
+          <Grid item data-test="companyDesc">
             <Typography
               color="textSecondary"
               className={classes.typographyBodyStyles}

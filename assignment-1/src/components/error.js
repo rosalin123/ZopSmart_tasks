@@ -27,11 +27,18 @@ function ErrorComponent(props) {
       alignItems="center"
       justify="center"
       spacing={1}
+      data-test="errorComponent"
     >
-      <Grid item className={classes.loaderStyles}>
+      <Grid
+        item
+        className={classes.loaderStyles}
+        data-test="disappointedEmoticon"
+      >
         <i className="fa fa-meh-o" aria-hidden="true"></i>
       </Grid>
-      <Grid item>Oops! {props.message}..</Grid>
+      <Grid item data-test="errorMessage">
+        Oops! {props.message}..
+      </Grid>
     </Grid>
   );
 }

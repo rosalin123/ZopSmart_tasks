@@ -23,11 +23,14 @@ function Loader() {
       className={classes.loaderContainerStyles}
       alignItems="center"
       justify="center"
+      data-test="loader"
     >
-      <Grid item className={classes.loaderStyles}>
+      <Grid item className={classes.loaderStyles} data-test="spinner">
         <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
       </Grid>
-      <Grid item>Loading...</Grid>
+      <Grid item data-test="loadingMessage">
+        Loading...
+      </Grid>
     </Grid>
   );
 }

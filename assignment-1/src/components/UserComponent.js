@@ -40,8 +40,9 @@ const UserComponent = (props) => {
       className={classes.root}
       alignItems="center"
       spacing={4}
+      data-test="userComponent"
     >
-      <Grid item>
+      <Grid item data-test="avatar">
         <Link
           to={`/users/${props.id}`}
           className={classes.linkStyles}
@@ -50,7 +51,7 @@ const UserComponent = (props) => {
           <Avatar className={classes.avatar}>{props.username[0]}</Avatar>
         </Link>
       </Grid>
-      <Grid item>
+      <Grid item data-test="userInfo">
         <Link to={`/users/${props.id}`} className={classes.linkStyles}>
           {' '}
           <Typography className={classes.typographyStyles}>

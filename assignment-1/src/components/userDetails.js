@@ -21,8 +21,14 @@ const useStyles = makeStyles({
 function UserDetails({ user }) {
   const classes = useStyles();
   return (
-    <Grid container className={classes.root} direction="column" spacing={2}>
-      <Grid item>
+    <Grid
+      container
+      className={classes.root}
+      direction="column"
+      spacing={2}
+      data-test="userDetailsComponent"
+    >
+      <Grid item data-test="name">
         <Typography className={classes.typographyTitleStyles}>Name</Typography>
         <Typography
           color="textSecondary"
@@ -31,7 +37,7 @@ function UserDetails({ user }) {
           {user.name}
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item data-test="username">
         <Typography className={classes.typographyTitleStyles}>
           Username
         </Typography>
@@ -42,7 +48,7 @@ function UserDetails({ user }) {
           {user.username}
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item data-test="email">
         <Typography className={classes.typographyTitleStyles}>Email</Typography>
         <Typography
           color="textSecondary"

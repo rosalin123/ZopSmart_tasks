@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import Posts from './Posts';
-import { findfindbyTestAttr, checkProps } from '../util/test_util';
+import { findfindbyTestAttr, checkProps } from '../Utils/testUtil';
 
 const mockStore = configureMockStore();
 const store = mockStore({});

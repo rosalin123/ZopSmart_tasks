@@ -26,8 +26,14 @@ const useStyles = makeStyles({
 function UserAddress({ user }) {
   const classes = useStyles();
   return (
-    <Grid container className={classes.root} direction="column" spacing={4}>
-      <Grid item>
+    <Grid
+      container
+      className={classes.root}
+      direction="column"
+      spacing={4}
+      data-test="userAddressComponent"
+    >
+      <Grid item data-test="addressHeader">
         <Typography className={classes.typographyTitleStyles}>
           Address
         </Typography>
@@ -44,7 +50,7 @@ function UserAddress({ user }) {
           </Typography>
         </Grid>
       </Grid>
-      <Grid item>
+      <Grid item data-test="addressDetails">
         <Grid container direction="column">
           <Grid item>
             <span className={classes.bold}>street:</span> {user.address.street}

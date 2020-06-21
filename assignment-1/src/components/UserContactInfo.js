@@ -25,8 +25,14 @@ const useStyles = makeStyles({
 function UserContactInfo({ user }) {
   const classes = useStyles();
   return (
-    <Grid container className={classes.root} direction="column" spacing={4}>
-      <Grid item>
+    <Grid
+      container
+      className={classes.root}
+      direction="column"
+      spacing={4}
+      data-test="userContactInfoComponent"
+    >
+      <Grid item data-test="phone">
         <Typography className={classes.typographyTitleStyles}>
           Contact Info
         </Typography>
@@ -58,7 +64,7 @@ function UserContactInfo({ user }) {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item>
+      <Grid item data-test="website">
         <Typography className={classes.typographyTitleStyles}>
           Website and Links
         </Typography>

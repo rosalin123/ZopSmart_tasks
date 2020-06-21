@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import PostsContainer from './postsContainer';
-import { findbyTestAttr, checkProps } from '../util/test_util';
+import { checkProps } from '../Utils/testUtil';
 
 const mockStore = configureMockStore();
 const store = mockStore({});
@@ -38,7 +38,6 @@ describe('Posts container Component', () => {
     });
 
     it('Posts Container should render without throwing an error', () => {
-      console.log('component', component);
       expect(component).toMatchSnapshot();
     });
   });

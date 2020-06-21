@@ -30,8 +30,14 @@ const useStyles = makeStyles({
 const Comment = (props) => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <Grid container direction="row" alignItems="center" spacing={1}>
+    <div className={classes.root} data-test="comment">
+      <Grid
+        container
+        direction="row"
+        alignItems="center"
+        spacing={1}
+        data-test="avatar"
+      >
         <Grid item>
           <Avatar className={classes.avatar}>{props.email[0]}</Avatar>
         </Grid>
@@ -41,8 +47,12 @@ const Comment = (props) => {
           </Typography>
         </Grid>
       </Grid>
-      <h4>{props.name}</h4>
-      <Typography color="textSecondary" className={classes.typographyStyles}>
+      <h4 data-test="name">{props.name}</h4>
+      <Typography
+        color="textSecondary"
+        className={classes.typographyStyles}
+        data-test="body"
+      >
         {props.body}
       </Typography>
     </div>

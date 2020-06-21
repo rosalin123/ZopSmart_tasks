@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PostComponent(props) {
+function PostComponent(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -69,7 +69,7 @@ export default function PostComponent(props) {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} data-test="postDetails">
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -90,29 +90,37 @@ export default function PostComponent(props) {
           </p>
         }
         subheader="September 14, 2016"
+        data-test="postHeader"
       />
 
-      <CardContent>
+      <CardContent data-test="postBody">
         {' '}
         <Link
           to={`/posts/${props.id}`}
           className={classes.linkStyles}
           onClick={handleClick}
+          data-test="postLink"
         >
           <Typography
             variant="body2"
             color="textPrimary"
             component="p"
             className={classes.cardContentTitleStyles}
+            data-test="postTitle"
           >
             {props.title}
           </Typography>
         </Link>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          data-test="postContent"
+        >
           {props.body}
         </Typography>
         {props.comments ? (
-          <Grid container>
+          <Grid container data-test="postComments">
             <Grid item>
               <Typography className={classes.cardContentTitleStyles}>
                 {' '}
@@ -156,3 +164,5 @@ export default function PostComponent(props) {
     </Card>
   );
 }
+
+export default PostComponent;
