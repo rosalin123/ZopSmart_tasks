@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import Post from './Post';
+import sinon from 'sinon';
 import { checkProps } from '../Utils/testUtil';
 
 const mockStore = configureMockStore();
@@ -14,6 +15,7 @@ const setUp = () => {
       <Post />
     </Provider>
   );
+
   return component;
 };
 

@@ -1,20 +1,32 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
+import { findbyTestAttr } from '../Utils/testUtil';
 import Header from './header';
 
-const mockStore = configureMockStore();
-const store = mockStore({});
-
-let wrapped = shallow(
-  <Provider store={store}>
-    <Header />
-  </Provider>
-);
+let wrapper = shallow(<Header />);
 
 describe('Header Component', () => {
   it('Header should render without throwing an error', () => {
-    expect(wrapped).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render homeButton', () => {
+    let component = findbyTestAttr(wrapper, 'homeButton');
+    expect(component.length).toBe(1);
+  });
+
+  it('should render allUsersButton', () => {
+    let component = findbyTestAttr(wrapper, 'allUsersButton');
+    expect(component.length).toBe(1);
+  });
+
+  it('should render albumButton', () => {
+    let component = findbyTestAttr(wrapper, 'albumButton');
+    expect(component.length).toBe(1);
+  });
+
+  it('should render roundIcon', () => {
+    let component = findbyTestAttr(wrapper, 'roundIcon');
+    expect(component.length).toBe(1);
   });
 });

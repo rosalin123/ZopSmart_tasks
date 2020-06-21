@@ -29,13 +29,14 @@ const PostsContainer = (props) => {
       justify="center"
       alignItems="center"
       className={classes.root}
+      data-test="postContainerComponent"
     >
-      <Grid item>
+      <Grid item data-test="header">
         <div className={classes.headerStyles}>Posts</div>
       </Grid>
       {props.posts.map((post, index) => {
         return (
-          <Grid item key={index}>
+          <Grid item key={index} data-test="post">
             <PostComponent
               title={post.title}
               user={props.users

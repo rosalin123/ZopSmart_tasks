@@ -1,37 +1,122 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header Component Header should render without throwing an error 1`] = `
-<ContextProvider
-  value={
-    Object {
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "subscription": Subscription {
-        "handleChangeWrapper": [Function],
-        "listeners": Object {
-          "notify": [Function],
-        },
-        "onStateChange": [Function],
-        "parentSub": undefined,
-        "store": Object {
-          "clearActions": [Function],
-          "dispatch": [Function],
-          "getActions": [Function],
-          "getState": [Function],
-          "replaceReducer": [Function],
-          "subscribe": [Function],
-        },
-        "unsubscribe": null,
-      },
-    }
-  }
+<WithStyles(ForwardRef(Grid))
+  alignItems="center"
+  container={true}
+  data-test="headerComponent"
 >
-  <Header />
-</ContextProvider>
+  <WithStyles(ForwardRef(AppBar))
+    position="static"
+  >
+    <WithStyles(ForwardRef(Toolbar))>
+      <WithStyles(ForwardRef(Grid))
+        alignItems="center"
+        container={true}
+        justify="space-between"
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+        >
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-typographyStyles-1"
+          >
+            Connect
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+        >
+          <WithStyles(ForwardRef(Grid))
+            container={true}
+            spacing={10}
+          >
+            <WithStyles(ForwardRef(Grid))
+              item={true}
+            >
+              <WithStyles(ForwardRef(Button))
+                color="inherit"
+                component={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "Link",
+                    "propTypes": Object {
+                      "innerRef": [Function],
+                      "onClick": [Function],
+                      "replace": [Function],
+                      "target": [Function],
+                      "to": [Function],
+                    },
+                    "render": [Function],
+                  }
+                }
+                data-test="homeButton"
+                to="/"
+              >
+                <HomeIcon />
+              </WithStyles(ForwardRef(Button))>
+            </WithStyles(ForwardRef(Grid))>
+            <WithStyles(ForwardRef(Grid))
+              item={true}
+            >
+              <WithStyles(ForwardRef(Button))
+                color="inherit"
+                component={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "Link",
+                    "propTypes": Object {
+                      "innerRef": [Function],
+                      "onClick": [Function],
+                      "replace": [Function],
+                      "target": [Function],
+                      "to": [Function],
+                    },
+                    "render": [Function],
+                  }
+                }
+                data-test="allUsersButton"
+                to="/users"
+              >
+                <PeopleIcon />
+              </WithStyles(ForwardRef(Button))>
+            </WithStyles(ForwardRef(Grid))>
+            <WithStyles(ForwardRef(Grid))
+              item={true}
+            >
+               
+              <WithStyles(ForwardRef(Button))
+                color="inherit"
+                component={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "Link",
+                    "propTypes": Object {
+                      "innerRef": [Function],
+                      "onClick": [Function],
+                      "replace": [Function],
+                      "target": [Function],
+                      "to": [Function],
+                    },
+                    "render": [Function],
+                  }
+                }
+                data-test="albumButton"
+                to="/albums"
+              >
+                <PhotoAlbumIcon />
+              </WithStyles(ForwardRef(Button))>
+            </WithStyles(ForwardRef(Grid))>
+          </WithStyles(ForwardRef(Grid))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          data-test="roundIcon"
+          item={true}
+        >
+          <AcUnitRoundedIcon />
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Toolbar))>
+  </WithStyles(ForwardRef(AppBar))>
+</WithStyles(ForwardRef(Grid))>
 `;

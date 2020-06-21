@@ -4,7 +4,6 @@ import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom';
-import { clearUserPosts } from '../actions/postActions';
 
 const useStyles = makeStyles({
   root: {
@@ -29,10 +28,6 @@ const useStyles = makeStyles({
 const UserComponent = (props) => {
   const classes = useStyles();
 
-  const handleClick = () => {
-    clearUserPosts();
-  };
-
   return (
     <Grid
       container
@@ -43,11 +38,7 @@ const UserComponent = (props) => {
       data-test="userComponent"
     >
       <Grid item data-test="avatar">
-        <Link
-          to={`/users/${props.id}`}
-          className={classes.linkStyles}
-          onClick={handleClick}
-        >
+        <Link to={`/users/${props.id}`} className={classes.linkStyles}>
           <Avatar className={classes.avatar}>{props.username[0]}</Avatar>
         </Link>
       </Grid>

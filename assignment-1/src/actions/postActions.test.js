@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import * as postActions from '../actions/postActions';
-import * as types from '../actions/actionConstants';
+import * as postActions from './postActions';
+import * as types from './actionConstants';
 import fetchMock from 'fetch-mock';
 
 const middlewares = [thunk];
@@ -88,6 +88,37 @@ describe('post actions', () => {
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
         });
+    });
+  });
+
+  it('creates FETCH_POSTS_SUCCESS when fetching posts has been done', () => {
+    fetchMock.getOnce('https://jsonplaceholder.typicode.com/posts', {
+      body: {
+        posts: [
+          { id: 1, title: 'post 1' },
+          { id: 2, title: 'post 2' },
+        ],
+      },
+
+      headers: { 'content-type': 'application/json' },
+    });
+
+    const expectedActions = [
+      { type: types.FETCH_POSTS_REQUEST },
+      {
+        type: types.FETCH_POSTS_SUCCESS,
+        posts: {
+          posts: [
+            { id: 1, title: 'post 1' },
+            { id: 2, title: 'post 2' },
+          ],
+        },
+      },
+    ];
+    const store = mockStore({ Posts: [] });
+
+    return store.dispatch(postActions.fetchPosts()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
     });
   });
 

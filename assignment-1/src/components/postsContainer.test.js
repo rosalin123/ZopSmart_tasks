@@ -1,19 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import PostsContainer from './postsContainer';
-import { checkProps } from '../Utils/testUtil';
 
-const mockStore = configureMockStore();
-const store = mockStore({});
+import PostsContainer from './postsContainer';
+import { checkProps, findbyTestAttr } from '../Utils/testUtil';
 
 const setUp = (props) => {
-  const component = shallow(
-    <Provider store={store}>
-      <PostsContainer {...props} />
-    </Provider>
-  );
+  const component = shallow(<PostsContainer {...props} />);
   return component;
 };
 
@@ -39,6 +31,16 @@ describe('Posts container Component', () => {
 
     it('Posts Container should render without throwing an error', () => {
       expect(component).toMatchSnapshot();
+    });
+
+    it('should render header', () => {
+      let wrapper = findbyTestAttr(component, 'header');
+      expect(wrapper.length).toBe(1);
+    });
+
+    it('should render posts', () => {
+      let wrapper = findbyTestAttr(component, 'post');
+      expect(wrapper.length).toBe(2);
     });
   });
 });

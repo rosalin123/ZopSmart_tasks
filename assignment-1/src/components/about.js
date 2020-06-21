@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Grid, Typography } from '@material-ui/core';
@@ -82,18 +81,25 @@ class About extends Component {
     const { classes, user } = this.props;
 
     return (
-      <Card className={classes.root} variant="outlined">
+      <Card className={classes.root} variant="outlined" data-test="About">
         <CardContent>
           <Grid container>
-            <Grid item xs={12} sm={4} className={classes.borderStyles}>
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              className={classes.borderStyles}
+              data-test="buttons"
+            >
               <Grid container direction="column">
-                <Grid item>
+                <Grid item data-test="header">
                   <Typography className={classes.aboutStyles}>About</Typography>
                 </Grid>
                 <Grid item className={classes.hoverStyles}>
                   <Button
                     className={classes.buttonStyles}
                     onClick={() => this.handleClick('details')}
+                    data-test="detailsButton"
                   >
                     Details About {user.username}{' '}
                   </Button>
@@ -102,6 +108,7 @@ class About extends Component {
                   <Button
                     className={classes.buttonStyles}
                     onClick={() => this.handleClick('work')}
+                    data-test="workDetailsButton"
                   >
                     Work{' '}
                   </Button>
@@ -110,6 +117,7 @@ class About extends Component {
                   <Button
                     className={classes.buttonStyles}
                     onClick={() => this.handleClick('places')}
+                    data-test="addressButton"
                   >
                     Address
                   </Button>
@@ -118,13 +126,14 @@ class About extends Component {
                   <Button
                     className={classes.buttonStyles}
                     onClick={() => this.handleClick('contacts')}
+                    data-test="contactInfoButton"
                   >
                     Contact Details
                   </Button>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} sm={8} data-test="details">
               {this.state.details ? (
                 <UserDetails user={user} />
               ) : this.state.work ? (

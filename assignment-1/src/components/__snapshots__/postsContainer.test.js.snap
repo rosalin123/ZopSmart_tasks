@@ -1,50 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Posts container Component with props Posts Container should render without throwing an error 1`] = `
-<ContextProvider
-  value={
-    Object {
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "subscription": Subscription {
-        "handleChangeWrapper": [Function],
-        "listeners": Object {
-          "notify": [Function],
-        },
-        "onStateChange": [Function],
-        "parentSub": undefined,
-        "store": Object {
-          "clearActions": [Function],
-          "dispatch": [Function],
-          "getActions": [Function],
-          "getState": [Function],
-          "replaceReducer": [Function],
-          "subscribe": [Function],
-        },
-        "unsubscribe": null,
-      },
-    }
-  }
+<WithStyles(ForwardRef(Grid))
+  alignItems="center"
+  className="makeStyles-root-1"
+  container={true}
+  data-test="postContainerComponent"
+  direction="column"
+  justify="center"
+  spacing={3}
 >
-  <PostsContainer
-    posts={
-      Array [
-        "post1",
-        "post2",
-      ]
-    }
-    users={
-      Array [
-        "user1",
-        "user2",
-      ]
-    }
-  />
-</ContextProvider>
+  <WithStyles(ForwardRef(Grid))
+    data-test="header"
+    item={true}
+  >
+    <div
+      className="makeStyles-headerStyles-2"
+    >
+      Posts
+    </div>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    data-test="post"
+    item={true}
+    key="0"
+  >
+    <PostComponent
+      user={
+        Object {
+          "0": "u",
+          "1": "s",
+          "2": "e",
+          "3": "r",
+          "4": "2",
+        }
+      }
+    />
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    data-test="post"
+    item={true}
+    key="1"
+  >
+    <PostComponent
+      user={
+        Object {
+          "0": "u",
+          "1": "s",
+          "2": "e",
+          "3": "r",
+          "4": "2",
+        }
+      }
+    />
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
 `;

@@ -189,7 +189,14 @@ const mapStateToProps = (state) => ({
   postsErr: state.UserPosts.error,
 });
 
-export default connect(mapStateToProps, {
-  getUser,
-  fetchUserPosts,
-})(withStyles(styles)(User));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUser: (userId) => dispatch(getUser(userId)),
+    fetchUserPosts: (userId) => dispatch(fetchUserPosts(userId)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(User));

@@ -35,14 +35,17 @@ const mapStateToProps = (state) => ({
   users: state.Users.users,
 });
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPosts: () => dispatch(fetchPosts()),
+    fetchUsers: () => dispatch(fetchUsers()),
+    clearComments: () => dispatch(clearComments()),
+    clearPost: () => dispatch(clearPost()),
+  };
+};
 Posts.propTypes = {
   posts: PropTypes.array,
   users: PropTypes.array,
 };
 
-export default connect(mapStateToProps, {
-  fetchPosts,
-  fetchUsers,
-  clearComments,
-  clearPost,
-})(Posts);
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

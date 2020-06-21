@@ -16,7 +16,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Comment from './comment';
 import { Link } from 'react-router-dom';
-import { clearComments, clearPost } from '../actions/postActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,11 +62,6 @@ function PostComponent(props) {
     setExpanded(!expanded);
   };
 
-  const handleClick = () => {
-    clearPost();
-    clearComments();
-  };
-
   return (
     <Card className={classes.root} data-test="postDetails">
       <CardHeader
@@ -98,7 +92,6 @@ function PostComponent(props) {
         <Link
           to={`/posts/${props.id}`}
           className={classes.linkStyles}
-          onClick={handleClick}
           data-test="postLink"
         >
           <Typography

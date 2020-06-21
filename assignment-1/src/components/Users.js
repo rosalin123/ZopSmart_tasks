@@ -54,6 +54,14 @@ const mapStateToProps = (state) => ({
   users: state.Users.users,
 });
 
-export default connect(mapStateToProps, { fetchUsers, clearUserPosts })(
-  withStyles(styles)(Users)
-);
+const matchDispatchToProps = (dispatch) => {
+  return {
+    fetchUsers: () => dispatch(fetchUsers()),
+    clearUserPosts: () => dispatch(clearUserPosts()),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  matchDispatchToProps
+)(withStyles(styles)(Users));
