@@ -82,7 +82,7 @@ export const fetchPosts = () => async (dispatch) => {
     posts = await posts_api.fetchPosts();
     return dispatch(fetchPostsSuccess(posts));
   } catch (err) {
-    dispatch(fetchPostsFailure(err));
+    return dispatch(fetchPostsFailure(err));
   }
 };
 
@@ -93,7 +93,7 @@ export const getPost = (id) => async (dispatch) => {
     post = await posts_api.getPost(id);
     return dispatch(getPostSuccess(post));
   } catch (err) {
-    dispatch(getPostFailure(err));
+    return dispatch(getPostFailure(err));
   }
 };
 
@@ -104,7 +104,7 @@ export const fetchPostComments = (id) => async (dispatch) => {
     comments = await posts_api.getPostComments(id);
     return dispatch(fetchCommentsSuccess(comments));
   } catch (err) {
-    dispatch(fetchCommentsFailure(err));
+    return dispatch(fetchCommentsFailure(err));
   }
 };
 
@@ -115,18 +115,18 @@ export const fetchUserPosts = (id) => async (dispatch) => {
     posts = await posts_api.getUserPosts(id);
     return dispatch(fetchUserPostsSuccess(posts));
   } catch (err) {
-    dispatch(fetchUserPostsFailure(err));
+    return dispatch(fetchUserPostsFailure(err));
   }
 };
 
 export const clearPost = () => (dispatch) => {
-  dispatch(clearPostRequest());
+  return dispatch(clearPostRequest());
 };
 
 export const clearComments = () => (dispatch) => {
-  dispatch(clearCommentsRequest());
+  return dispatch(clearCommentsRequest());
 };
 
 export const clearUserPosts = () => (dispatch) => {
-  dispatch(clearUserPostsRequest());
+  return dispatch(clearUserPostsRequest());
 };

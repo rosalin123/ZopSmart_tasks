@@ -1,35 +1,155 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`About Component About should render without throwing an error 1`] = `
-<About
-  address={
-    Object {
-      "city": "def",
-      "street": "abc",
-      "suite": "ghi",
-      "zipcode": "123",
-    }
-  }
-  classes={
-    Object {
-      "aboutStyles": "About-aboutStyles-2",
-      "borderStyles": "About-borderStyles-3",
-      "buttonStyles": "About-buttonStyles-4",
-      "hoverStyles": "About-hoverStyles-5",
-      "pos": "About-pos-7",
-      "root": "About-root-1",
-      "title": "About-title-6",
-    }
-  }
-  company={
-    Object {
-      "name": "abc",
-    }
-  }
-  email="r@gmail.com"
-  name="rose"
-  phone="123"
-  username="rosy"
-  website="aa.com"
-/>
+exports[`About Component renders all About should render without throwing an error 1`] = `
+<div
+  class="MuiPaper-root MuiCard-root About-root-1 MuiPaper-outlined MuiPaper-rounded"
+  data-test="About"
+>
+  <div
+    class="MuiCardContent-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container"
+    >
+      <div
+        class="MuiGrid-root About-borderStyles-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
+        data-test="buttons"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item"
+            data-test="header"
+          >
+            <p
+              class="MuiTypography-root About-aboutStyles-2 MuiTypography-body1"
+            >
+              About
+            </p>
+          </div>
+          <div
+            class="MuiGrid-root About-hoverStyles-5 MuiGrid-item"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text About-buttonStyles-4"
+              data-test="detailsButton"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                Details About rosy 
+              </span>
+            </button>
+          </div>
+          <div
+            class="MuiGrid-root About-hoverStyles-5 MuiGrid-item"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text About-buttonStyles-4"
+              data-test="workDetailsButton"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                Work 
+              </span>
+            </button>
+          </div>
+          <div
+            class="MuiGrid-root About-hoverStyles-5 MuiGrid-item"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text About-buttonStyles-4"
+              data-test="addressButton"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                Address
+              </span>
+            </button>
+          </div>
+          <div
+            class="MuiGrid-root About-hoverStyles-5 MuiGrid-item"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text About-buttonStyles-4"
+              data-test="contactInfoButton"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                Contact Details
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-8"
+        data-test="details"
+      >
+        <div
+          class="MuiGrid-root makeStyles-root-8 MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-direction-xs-column"
+          data-test="userDetailsComponent"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item"
+          >
+            <p
+              class="MuiTypography-root makeStyles-typographyTitleStyles-9 MuiTypography-body1"
+            >
+              Name
+            </p>
+            <p
+              class="MuiTypography-root makeStyles-typographyBodyStyles-10 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              data-test="name"
+            >
+              rose
+            </p>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item"
+          >
+            <p
+              class="MuiTypography-root makeStyles-typographyTitleStyles-9 MuiTypography-body1"
+            >
+              Username
+            </p>
+            <p
+              class="MuiTypography-root makeStyles-typographyBodyStyles-10 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              data-test="username"
+            >
+              rosy
+            </p>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item"
+          >
+            <p
+              class="MuiTypography-root makeStyles-typographyTitleStyles-9 MuiTypography-body1"
+            >
+              Email
+            </p>
+            <p
+              class="MuiTypography-root makeStyles-typographyBodyStyles-10 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              data-test="email"
+            >
+              r@gmail.com
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 `;

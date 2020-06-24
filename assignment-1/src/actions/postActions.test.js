@@ -10,6 +10,7 @@ const mockStore = configureMockStore(middlewares);
 describe('post actions', () => {
   afterEach(() => {
     fetchMock.restore();
+    fetch.resetMocks();
   });
 
   //fetching posts in bulk
@@ -89,36 +90,24 @@ describe('post actions', () => {
           expect(store.getActions()).toEqual(expectedActions);
         });
     });
-  });
 
-  it('creates FETCH_POSTS_SUCCESS when fetching posts has been done', () => {
-    fetchMock.getOnce('https://jsonplaceholder.typicode.com/posts', {
-      body: {
-        posts: [
-          { id: 1, title: 'post 1' },
-          { id: 2, title: 'post 2' },
-        ],
-      },
+    it('creates FETCH_POSTS_FAILURE when fetch request fails', () => {
+      fetch.mockReject('Something wrong');
 
-      headers: { 'content-type': 'application/json' },
-    });
+      const expectedActions = [
+        { type: types.FETCH_POSTS_REQUEST },
+        { type: types.FETCH_POSTS_FAILURE, error: 'Something wrong' },
+      ];
+      const store = mockStore({
+        Posts: { loading: false, posts: [], error: '' },
+      });
 
-    const expectedActions = [
-      { type: types.FETCH_POSTS_REQUEST },
-      {
-        type: types.FETCH_POSTS_SUCCESS,
-        posts: {
-          posts: [
-            { id: 1, title: 'post 1' },
-            { id: 2, title: 'post 2' },
-          ],
-        },
-      },
-    ];
-    const store = mockStore({ Posts: [] });
+      return store
+        .dispatch(postActions.fetchPosts())
 
-    return store.dispatch(postActions.fetchPosts()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
     });
   });
 
@@ -177,6 +166,25 @@ describe('post actions', () => {
       return store.dispatch(postActions.getPost(1)).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
+    });
+
+    it('creates GET_POST_FAILURE when fetch request fails', () => {
+      fetch.mockReject('Something wrong');
+
+      const expectedActions = [
+        { type: types.GET_POST_REQUEST },
+        { type: types.GET_POST_FAILURE, error: 'Something wrong' },
+      ];
+      const store = mockStore({
+        Post: { loading: false, post: {}, error: '' },
+      });
+
+      return store
+        .dispatch(postActions.getPost(1))
+
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
     });
   });
 
@@ -251,6 +259,25 @@ describe('post actions', () => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     });
+
+    it('creates FETCH_COMMENTS_FAILURE when fetch request fails', () => {
+      fetch.mockReject('Something wrong');
+
+      const expectedActions = [
+        { type: types.FETCH_COMMENTS_REQUEST },
+        { type: types.FETCH_COMMENTS_FAILURE, error: 'Something wrong' },
+      ];
+      const store = mockStore({
+        Comments: { loading: false, comments: {}, error: '' },
+      });
+
+      return store
+        .dispatch(postActions.fetchPostComments(1))
+
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
   });
 
   //fetching all posts of a user
@@ -320,6 +347,25 @@ describe('post actions', () => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     });
+
+    it('creates FETCH_USER_POSTS_FAILURE when fetch request fails', () => {
+      fetch.mockReject('Something wrong');
+
+      const expectedActions = [
+        { type: types.FETCH_USER_POSTS_REQUEST },
+        { type: types.FETCH_USER_POSTS_FAILURE, error: 'Something wrong' },
+      ];
+      const store = mockStore({
+        UserPosts: { loading: false, posts: {}, error: '' },
+      });
+
+      return store
+        .dispatch(postActions.fetchUserPosts(1))
+
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
   });
 
   it('should return post action for CLEAR_POST', () => {
@@ -330,6 +376,22 @@ describe('post actions', () => {
     expect(postActions.clearPostRequest()).toEqual(expectedAction);
   });
 
+  it('creates CLEAR_POST when clearPost method is called', async () => {
+    const expectedAction = { type: types.CLEAR_POST };
+
+    const store = mockStore({
+      Post: {
+        loading: false,
+        post: { id: 1, body: 'best places to visit' },
+        error: '',
+      },
+    });
+
+    await store.dispatch(postActions.clearPost());
+    const actions = store.getActions();
+    expect(actions[0]).toEqual(expectedAction);
+  });
+
   it('should return post action for CLEAR_USER_POSTS', () => {
     const expectedAction = {
       type: types.CLEAR_USER_POSTS,
@@ -338,11 +400,43 @@ describe('post actions', () => {
     expect(postActions.clearUserPostsRequest()).toEqual(expectedAction);
   });
 
+  it('creates CLEAR_USER_POSTS when clearUserPosts method is called', async () => {
+    const expectedAction = { type: types.CLEAR_USER_POSTS };
+
+    const store = mockStore({
+      UserPosts: {
+        loading: false,
+        posts: [{ id: 1, body: 'best places to visit' }],
+        error: '',
+      },
+    });
+
+    await store.dispatch(postActions.clearUserPosts());
+    const actions = store.getActions();
+    expect(actions[0]).toEqual(expectedAction);
+  });
+
   it('should return post action for CLEAR_COMMENTS', () => {
     const expectedAction = {
       type: types.CLEAR_COMMENTS,
     };
 
     expect(postActions.clearCommentsRequest()).toEqual(expectedAction);
+  });
+
+  it('creates CLEAR_COMMENTS when clearComments method is called', async () => {
+    const expectedAction = { type: types.CLEAR_COMMENTS };
+
+    const store = mockStore({
+      Comments: {
+        loading: false,
+        comments: [{ id: 1, body: 'nice' }],
+        error: '',
+      },
+    });
+
+    await store.dispatch(postActions.clearComments());
+    const actions = store.getActions();
+    expect(actions[0]).toEqual(expectedAction);
   });
 });

@@ -66,7 +66,7 @@ const styles = {
   },
 };
 
-class User extends Component {
+export class User extends Component {
   state = {
     showPosts: true,
     showAbout: false,
@@ -78,8 +78,8 @@ class User extends Component {
     this.props.fetchUserPosts(id);
   };
 
-  handleClick = (e) => {
-    if (e.currentTarget.textContent === 'About') {
+  handleClick = (input) => {
+    if (input === 'About') {
       this.setState({ showAbout: true, showPosts: false });
     } else {
       this.setState({ showAbout: false, showPosts: true });
@@ -97,85 +97,105 @@ class User extends Component {
       userLoading,
       postsLoading,
     } = this.props;
-    return userLoading === true || postsLoading === true ? (
-      <Loader />
-    ) : userErr !== '' || postsErr !== '' ? (
-      <ErrorComponent message="Something's not right" />
-    ) : (
-      <Grid container>
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          className={classes.root}
-        >
-          <Grid item>
-            {' '}
-            <div className={classes.square}>
-              <Avatar className={classes.avatar}>
-                {user.username ? user.username[0] : ''}{' '}
-              </Avatar>
-            </div>
-          </Grid>
-          <Grid item className={classes.userNameStyles}>
-            <Typography className={classes.typographyStyles}>
-              {user.username}
-            </Typography>
-
-            <Typography color="textSecondary">{user.email}</Typography>
-
-            <hr className={classes.lineStyles} />
-
-            <Grid container justify="center" spacing={5}>
+    return (
+      <div>
+        {userLoading === true || postsLoading === true ? (
+          <Loader />
+        ) : userErr !== '' || postsErr !== '' ? (
+          <ErrorComponent
+            message="Something's not right"
+            data-test="errorComponent"
+          />
+        ) : (
+          <Grid container data-test="userComponent">
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+              className={classes.root}
+            >
               <Grid item>
-                <Button color="inherit" onClick={(e) => this.handleClick(e)}>
-                  Posts
-                </Button>
+                {' '}
+                <div className={classes.square} data-test="avatar">
+                  <Avatar className={classes.avatar}>
+                    {user.username ? user.username[0] : ''}{' '}
+                  </Avatar>
+                </div>
               </Grid>
-              <Grid item>
-                <Button color="inherit" onClick={(e) => this.handleClick(e)}>
-                  About
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
+              <Grid item className={classes.userNameStyles}>
+                <Typography
+                  className={classes.typographyStyles}
+                  data-test="username"
+                >
+                  {user.username}
+                </Typography>
 
-          {this.state.showPosts === true ? (
-            <Grid item>
-              <Grid
-                container
-                spacing={4}
-                justify="center"
-                alignItems="center"
-                className={classes.postStyles}
-                direction="column"
-              >
-                {posts.map((post, index) => {
-                  return (
-                    <Grid item key={index}>
-                      <PostComponent
-                        title={post.title}
-                        user={user}
-                        body={post.body}
-                        id={post.id}
-                      />
-                    </Grid>
-                  );
-                })}
-              </Grid>
-            </Grid>
-          ) : (
-            <Grid item className={classes.aboutStyles}>
-              <Grid container justify="center">
-                <Grid item>
-                  <About user={user} />
+                <Typography color="textSecondary" data-test="useremail">
+                  {user.email}
+                </Typography>
+
+                <hr className={classes.lineStyles} />
+
+                <Grid container justify="center" spacing={5} data-test="navbar">
+                  <Grid item>
+                    <Button
+                      color="inherit"
+                      onClick={() => this.handleClick('Posts')}
+                      data-test="postsButton"
+                    >
+                      Posts
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button
+                      color="inherit"
+                      onClick={() => this.handleClick('About')}
+                      data-test="aboutUserButton"
+                    >
+                      About
+                    </Button>
+                  </Grid>
                 </Grid>
               </Grid>
+
+              {this.state.showPosts === true ? (
+                <Grid item data-test="posts">
+                  <Grid
+                    container
+                    spacing={4}
+                    justify="center"
+                    alignItems="center"
+                    className={classes.postStyles}
+                    direction="column"
+                  >
+                    {posts.map((post, index) => {
+                      return (
+                        <Grid item key={index}>
+                          <PostComponent
+                            title={post.title}
+                            user={user}
+                            body={post.body}
+                            id={post.id}
+                          />
+                        </Grid>
+                      );
+                    })}
+                  </Grid>
+                </Grid>
+              ) : (
+                <Grid item className={classes.aboutStyles} data-test="about">
+                  <Grid container justify="center">
+                    <Grid item>
+                      <About user={user} />
+                    </Grid>
+                  </Grid>
+                </Grid>
+              )}
             </Grid>
-          )}
-        </Grid>
-      </Grid>
+          </Grid>
+        )}{' '}
+      </div>
     );
   }
 }
@@ -189,7 +209,7 @@ const mapStateToProps = (state) => ({
   postsErr: state.UserPosts.error,
 });
 
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return {
     getUser: (userId) => dispatch(getUser(userId)),
     fetchUserPosts: (userId) => dispatch(fetchUserPosts(userId)),

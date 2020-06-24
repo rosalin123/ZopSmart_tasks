@@ -78,7 +78,8 @@ class About extends Component {
   };
 
   render() {
-    const { classes, user } = this.props;
+    const { classes } = this.props;
+    const { user } = this.props;
 
     return (
       <Card className={classes.root} variant="outlined" data-test="About">
@@ -135,13 +136,16 @@ class About extends Component {
             </Grid>
             <Grid item xs={12} sm={8} data-test="details">
               {this.state.details ? (
-                <UserDetails user={user} />
+                <UserDetails user={user} data-test="UserDetailsComponent" />
               ) : this.state.work ? (
-                <UserWorkInfo user={user} />
+                <UserWorkInfo user={user} data-test="UserWorkInfoComponent" />
               ) : this.state.places ? (
-                <UserAddress user={user} />
+                <UserAddress user={user} data-test="UseAddressComponent" />
               ) : (
-                <UserContactInfo user={user} />
+                <UserContactInfo
+                  user={user}
+                  data-test="UserContactInfoComponent"
+                />
               )}
             </Grid>
           </Grid>

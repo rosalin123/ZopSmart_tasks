@@ -7,9 +7,10 @@ import fetchMock from 'fetch-mock';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('post actions', () => {
+describe('user actions', () => {
   afterEach(() => {
     fetchMock.restore();
+    fetch.resetMocks();
   });
 
   describe('fetching users', () => {
@@ -76,6 +77,22 @@ describe('post actions', () => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     });
+
+    // it('creates FETCH_USERS_FAILURE when fetch request fails', () => {
+    //   fetch.mockRejectOnce('Something wrong');
+
+    //   const expectedActions = [
+    //     { type: types.FETCH_USERS_REQUEST },
+    //     { type: types.FETCH_USERS_FAILURE, error: 'Something wrong' },
+    //   ];
+    //   const store = mockStore({
+    //     Users: { loading: false, users: [], error: '' },
+    //   });
+
+    //   return store.dispatch(userActions.fetchUsers()).then(() => {
+    //     expect(store.getActions()).toEqual(expectedActions);
+    //   });
+    // });
   });
 
   describe('get an user by id', () => {
@@ -130,10 +147,45 @@ describe('post actions', () => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     });
+
+    it('creates GET_USER_FAILURE when fetch request fails', () => {
+      fetch.mockRejectOnce('Something wrong');
+
+      const expectedActions = [
+        { type: types.GET_USER_REQUEST },
+        { type: 'GET_USER_FAILURE', error: 'Something wrong' },
+      ];
+      const store = mockStore({
+        User: { loading: false, user: [], error: '' },
+      });
+
+      return store
+        .dispatch(userActions.getUser(1))
+
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
   });
 
   it('returns user action for CLEAR_USER', () => {
     const expectedAction = { type: types.CLEAR_USER };
     expect(userActions.clearUserRequest()).toEqual(expectedAction);
+  });
+
+  it('creates CLEAR_USER when clearUser method is called', async () => {
+    const expectedAction = { type: types.CLEAR_USER };
+
+    const store = mockStore({
+      User: {
+        loading: false,
+        user: { id: 1, name: 'nice' },
+        error: '',
+      },
+    });
+
+    await store.dispatch(userActions.clearUser());
+    const actions = store.getActions();
+    expect(actions[0]).toEqual(expectedAction);
   });
 });

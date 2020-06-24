@@ -1,37 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Users Component Users component should render without throwing an error 1`] = `
-<ContextProvider
-  value={
-    Object {
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "subscription": Subscription {
-        "handleChangeWrapper": [Function],
-        "listeners": Object {
-          "notify": [Function],
-        },
-        "onStateChange": [Function],
-        "parentSub": undefined,
-        "store": Object {
-          "clearActions": [Function],
-          "dispatch": [Function],
-          "getActions": [Function],
-          "getState": [Function],
-          "replaceReducer": [Function],
-          "subscribe": [Function],
-        },
-        "unsubscribe": null,
-      },
-    }
-  }
+<div
+  class="MuiGrid-root Users-root-1 MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-direction-xs-column"
 >
-  <Connect(WithStyles(Users)) />
-</ContextProvider>
+  <div
+    class="MuiGrid-root Users-userStyles-2 MuiGrid-item"
+  >
+    <div
+      class="MuiGrid-root makeStyles-root-3 MuiGrid-container MuiGrid-spacing-xs-4 MuiGrid-align-items-xs-center"
+      data-test="userComponent"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item"
+        data-test="avatar"
+      >
+        <a
+          class="makeStyles-linkStyles-6"
+          href="/users/1"
+        >
+          <div
+            class="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-4 MuiAvatar-colorDefault"
+          >
+            r
+          </div>
+        </a>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item"
+        data-test="userInfo"
+      >
+        <a
+          class="makeStyles-linkStyles-6"
+          href="/users/1"
+        >
+           
+          <p
+            class="MuiTypography-root makeStyles-typographyStyles-5 MuiTypography-body1"
+          >
+            ros
+          </p>
+           
+        </a>
+        <p
+          class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+        >
+          r@gmail.com
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 `;

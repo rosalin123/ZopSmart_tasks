@@ -41,7 +41,7 @@ export const fetchUsers = () => async (dispatch) => {
     users = await users_api.fetchUsers();
     return dispatch(fetchUsersSuccess(users));
   } catch (err) {
-    dispatch(fetchUsersFailure(err));
+    return dispatch(fetchUsersFailure(err));
   }
 };
 
@@ -52,10 +52,10 @@ export const getUser = (id) => async (dispatch) => {
     user = await users_api.getUser(id);
     return dispatch(getUserSuccess(user));
   } catch (err) {
-    dispatch(getUserFailure(err));
+    return dispatch(getUserFailure(err));
   }
 };
 
 export const clearUser = () => (dispatch) => {
-  dispatch(clearUserRequest());
+  return dispatch(clearUserRequest());
 };

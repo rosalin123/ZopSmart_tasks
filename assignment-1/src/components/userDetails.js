@@ -28,31 +28,34 @@ function UserDetails({ user }) {
       spacing={2}
       data-test="userDetailsComponent"
     >
-      <Grid item data-test="name">
+      <Grid item>
         <Typography className={classes.typographyTitleStyles}>Name</Typography>
         <Typography
           color="textSecondary"
           className={classes.typographyBodyStyles}
+          data-test="name"
         >
           {user.name}
         </Typography>
       </Grid>
-      <Grid item data-test="username">
+      <Grid item>
         <Typography className={classes.typographyTitleStyles}>
           Username
         </Typography>
         <Typography
           color="textSecondary"
           className={classes.typographyBodyStyles}
+          data-test="username"
         >
           {user.username}
         </Typography>
       </Grid>
-      <Grid item data-test="email">
+      <Grid item>
         <Typography className={classes.typographyTitleStyles}>Email</Typography>
         <Typography
           color="textSecondary"
           className={classes.typographyBodyStyles}
+          data-test="email"
         >
           {user.email}
         </Typography>

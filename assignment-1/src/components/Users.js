@@ -18,18 +18,22 @@ const styles = {
   },
 };
 
-class Users extends Component {
+export class Users extends Component {
   componentDidMount = () => {
     this.props.fetchUsers();
     this.props.clearUserPosts();
   };
 
   render() {
-    const { classes, users, loading, error } = this.props;
+    const { classes } = this.props;
+    const { users, loading, error } = this.props;
     return loading === true ? (
-      <Loader />
+      <Loader data-test="loaderComponent" />
     ) : error !== '' ? (
-      <ErrorComponent message="Something's not right.." />
+      <ErrorComponent
+        message="Something's not right.."
+        data-test="errorComponent"
+      />
     ) : (
       <Grid container spacing={3} direction="column" className={classes.root}>
         {users.map((user, index) => {
@@ -48,13 +52,13 @@ class Users extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   loading: state.Users.loading,
   error: state.Users.error,
   users: state.Users.users,
 });
 
-const matchDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return {
     fetchUsers: () => dispatch(fetchUsers()),
     clearUserPosts: () => dispatch(clearUserPosts()),
@@ -63,5 +67,5 @@ const matchDispatchToProps = (dispatch) => {
 
 export default connect(
   mapStateToProps,
-  matchDispatchToProps
+  mapDispatchToProps
 )(withStyles(styles)(Users));

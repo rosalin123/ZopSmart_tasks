@@ -56,11 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 function PostComponent(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const [expanded] = React.useState(false);
 
   return (
     <Card className={classes.root} data-test="postDetails">
@@ -147,7 +143,6 @@ function PostComponent(props) {
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}
-          onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >

@@ -9,15 +9,17 @@ import ErrorComponent from './error';
 
 import { connect } from 'react-redux';
 
-class Post extends Component {
+export class Post extends Component {
+  constructor(props) {
+    super(props);
+  }
   componentDidMount = async () => {
-    component = setUp(props);
     const { id } = this.props.match.params;
 
+    this.props.fetchPostComments(id);
     const post = (await this.props.getPost(id)).post;
 
-    await this.props.getUser(post.userId);
-    this.props.fetchPostComments(id);
+    this.props.getUser(post.userId);
   };
 
   render() {
@@ -33,23 +35,35 @@ class Post extends Component {
       comments,
     } = this.props;
 
-    return postLoading === true ||
-      commentsLoading === true ||
-      userLoading === true ? (
-      <Loader />
-    ) : postError !== '' || commentsError !== '' || userError !== '' ? (
-      <ErrorComponent message="Something's not right" />
-    ) : (
-      <Grid container justify="center" alignItems="center">
-        <Grid item>
-          <PostComponent
-            title={post.title}
-            user={user}
-            body={post.body}
-            comments={comments}
+    return (
+      <div>
+        {postLoading === true ||
+        commentsLoading === true ||
+        userLoading === true ? (
+          <Loader data-test="loader" />
+        ) : postError !== '' || commentsError !== '' || userError !== '' ? (
+          <ErrorComponent
+            message="Something's not right"
+            data-test="errorComponent"
           />
-        </Grid>
-      </Grid>
+        ) : (
+          <Grid
+            container
+            justify="center"
+            alignItems="center"
+            data-test="PostComponent"
+          >
+            <Grid item>
+              <PostComponent
+                title={post.title}
+                user={user}
+                body={post.body}
+                comments={comments}
+              />
+            </Grid>
+          </Grid>
+        )}
+      </div>
     );
   }
 }
@@ -66,7 +80,7 @@ const mapStateToProps = (state) => ({
   user: state.User.user,
 });
 
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return {
     getPost: (postId) => dispatch(getPost(postId)),
     getUser: (userId) => dispatch(getUser(userId)),
