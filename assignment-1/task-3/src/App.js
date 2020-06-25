@@ -41,6 +41,10 @@ const styles = {
   typograpgyStyles: {
     fontWeight: 'bold',
   },
+
+  tableStyles: {
+    marginTop: '30px',
+  },
 };
 
 class App extends Component {
@@ -147,7 +151,7 @@ class App extends Component {
             </Grid>
           </form>
         </Grid>
-        <Grid item>
+        <Grid item className={classes.tableStyles}>
           {' '}
           {this.state.showTable && (
             <Table rows={this.state.rows} columns={this.state.columns} />
