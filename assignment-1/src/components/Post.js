@@ -10,9 +10,6 @@ import ErrorComponent from './error';
 import { connect } from 'react-redux';
 
 export class Post extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount = async () => {
     const { id } = this.props.match.params;
 
