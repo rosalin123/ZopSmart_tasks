@@ -7,8 +7,8 @@ import { withStyles } from '@material-ui/core';
 const styles = {
   contentStyles: {
     background: '#eceff1',
-    width: '100vw',
-    height: '100vh',
+    width: '100%',
+    minHeight: '100vh',
   },
   formStyles: {
     width: 400,

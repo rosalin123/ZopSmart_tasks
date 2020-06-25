@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { updateValues } from '../../actions/tableActions';
 import { connect } from 'react-redux';
+import './styles.css';
 
 class Table extends Component {
   componentDidMount = () => {
@@ -86,12 +87,12 @@ class Table extends Component {
           <table style={{ width: '100%' }}>
             <tbody>
               <tr>
-                <td>S.No</td>
+                <th>S.No</th>
                 {values[0].map((value, index) => {
-                  return <td key={index}>Val {index + 1}</td>;
+                  return <th key={index}>Val {index + 1}</th>;
                 })}
-                <td key={100}>Sum</td>
-                <td key={101}>Product</td>
+                <th key={100}>Sum</th>
+                <th key={101}>Product</th>
               </tr>
               {tableData}
             </tbody>
