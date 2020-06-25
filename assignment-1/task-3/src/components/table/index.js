@@ -54,11 +54,12 @@ class Table extends Component {
     console.log('hey I got renderd again');
     let { values, sumProduct } = this.props;
 
-    return (
+    const tableData =
       values !== null &&
       values.map((value1, index1) => {
         return (
           <tr key={index1} data-row="index">
+            <td>{index1 + 1}</td>
             {value1.map((value2, index2) => {
               return (
                 <td key={index2}>
@@ -76,7 +77,27 @@ class Table extends Component {
             <td key={111}>{sumProduct[index1][1]}</td>
           </tr>
         );
-      })
+      });
+
+    return (
+      values !== null && (
+        <div>
+          {' '}
+          <table style={{ width: '100%' }}>
+            <tbody>
+              <tr>
+                <td>S.No</td>
+                {values[0].map((value, index) => {
+                  return <td key={index}>Val {index + 1}</td>;
+                })}
+                <td key={100}>Sum</td>
+                <td key={101}>Product</td>
+              </tr>
+              {tableData}
+            </tbody>
+          </table>
+        </div>
+      )
     );
   }
 }
