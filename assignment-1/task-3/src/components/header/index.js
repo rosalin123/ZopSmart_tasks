@@ -15,10 +15,10 @@ const useStyles = makeStyles(() => ({
 const Header = () => {
   const classes = useStyles();
   return (
-    <Grid container alignItems="center">
+    <Grid container alignItems="center" data-test="headerComponent">
       <AppBar position="static">
         <Toolbar>
-          <Typography className={classes.typographyStyles}>
+          <Typography className={classes.typographyStyles} data-test="text">
             Simple Calculator
           </Typography>
         </Toolbar>

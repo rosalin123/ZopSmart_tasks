@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableContainer component TableContainer should render without throuwing any error 1`] = `
+<WithStyles(ForwardRef(Grid))
+  alignItems="center"
+  className="TableContainer-contentStyles-1"
+  container={true}
+  direction="column"
+>
+  <WithStyles(ForwardRef(Grid))
+    className="TableContainer-headerStyles-3"
+    data-test="header"
+    item={true}
+  >
+    <Header />
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    className="TableContainer-formStyles-2"
+    item={true}
+  >
+     
+    <form
+      data-test="form"
+      onSubmit={[Function]}
+    >
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        direction="column"
+        spacing={2}
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+        >
+          <h3>
+            Enter rows and columns to create a table
+          </h3>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+        >
+          <WithStyles(ForwardRef(Grid))
+            className="TableContainer-paddingStyles-5"
+            container={true}
+            direction="column"
+            spacing={1}
+          >
+             
+            <WithStyles(ForwardRef(Grid))
+              data-test="input"
+              item={true}
+            >
+              <WithStyles(ForwardRef(Grid))
+                container={true}
+                justify="space-between"
+                spacing={2}
+              >
+                 
+                <WithStyles(ForwardRef(Grid))
+                  item={true}
+                >
+                   
+                  <WithStyles(ForwardRef(Typography))
+                    className="TableContainer-typograpgyStyles-7"
+                    color="textSecondary"
+                  >
+                    Rows:
+                  </WithStyles(ForwardRef(Typography))>
+                </WithStyles(ForwardRef(Grid))>
+                <WithStyles(ForwardRef(Grid))
+                  item={true}
+                >
+                   
+                  <input
+                    className="TableContainer-inputFieldStyles-4"
+                    data-test="rowsInput"
+                    onChange={[Function]}
+                    type="number"
+                  />
+                </WithStyles(ForwardRef(Grid))>
+              </WithStyles(ForwardRef(Grid))>
+            </WithStyles(ForwardRef(Grid))>
+            <WithStyles(ForwardRef(Grid))
+              data-test="input"
+              item={true}
+            >
+              <WithStyles(ForwardRef(Grid))
+                container={true}
+                justify="space-between"
+              >
+                 
+                <WithStyles(ForwardRef(Grid))
+                  item={true}
+                >
+                   
+                  <WithStyles(ForwardRef(Typography))
+                    className="TableContainer-typograpgyStyles-7"
+                    color="textSecondary"
+                  >
+                    Columns:
+                  </WithStyles(ForwardRef(Typography))>
+                </WithStyles(ForwardRef(Grid))>
+                <WithStyles(ForwardRef(Grid))
+                  item={true}
+                >
+                  <input
+                    className="TableContainer-inputFieldStyles-4"
+                    data-test="columnInput"
+                    onChange={[Function]}
+                    type="number"
+                  />
+                </WithStyles(ForwardRef(Grid))>
+              </WithStyles(ForwardRef(Grid))>
+            </WithStyles(ForwardRef(Grid))>
+          </WithStyles(ForwardRef(Grid))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+        >
+           
+          <WithStyles(ForwardRef(Button))
+            className="TableContainer-submitButtonStyles-6"
+            color="primary"
+            data-test="submit"
+            type="submit"
+            variant="contained"
+          >
+            Submit
+          </WithStyles(ForwardRef(Button))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </form>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    className="TableContainer-tableStyles-8"
+    item={true}
+  >
+     
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
+`;

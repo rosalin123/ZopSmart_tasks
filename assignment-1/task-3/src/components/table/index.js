@@ -3,13 +3,11 @@ import { updateValues } from '../../actions/tableActions';
 import { connect } from 'react-redux';
 import './styles.css';
 
-class Table extends Component {
+export class Table extends Component {
   componentDidMount = () => {
-    let { rows, columns } = this.props;
-    console.log('rows,columns', rows, columns);
-    let values = this.setInitialValues(rows, columns);
-    let sumProduct = this.setSumProductValues(rows);
-    console.log(values, sumProduct);
+    const { rows, columns } = this.props;
+    const values = this.setInitialValues(rows, columns);
+    const sumProduct = this.setSumProductValues(rows);
     this.props.updateValues(values, sumProduct);
   };
 
@@ -37,11 +35,9 @@ class Table extends Component {
   handleChange = (e) => {
     let row = Number(e.target.dataset.row);
     let column = Number(e.target.dataset.column);
-    console.log(row, column);
     let { values, sumProduct } = this.props;
     let prevValue = values[row][column];
     values[row][column] = Number(e.target.value);
-    console.log('prev value,current value', prevValue, e.target.value);
     sumProduct[row][0] =
       sumProduct[row][0] - prevValue + Number(e.target.value);
     sumProduct[row][1] = values[row].reduce((product, value) => {
@@ -52,7 +48,6 @@ class Table extends Component {
   };
 
   render() {
-    console.log('hey I got renderd again');
     let { values, sumProduct } = this.props;
 
     const tableData =
@@ -70,6 +65,7 @@ class Table extends Component {
                     defaultValue={0}
                     data-row={index1}
                     data-column={index2}
+                    data-test="input"
                   />
                 </td>
               );
@@ -108,7 +104,7 @@ const mapStateToProps = (state) => ({
   sumProduct: state.Values.sumProduct,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   updateValues: (values, sumProduct) =>
     dispatch(updateValues(values, sumProduct)),
 });
