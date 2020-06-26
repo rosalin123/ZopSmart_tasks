@@ -1,1 +1,0 @@
-export const UPDATE_VALUES = 'UPDATE_VALUES';
