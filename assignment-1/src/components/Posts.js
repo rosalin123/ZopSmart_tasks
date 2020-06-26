@@ -43,6 +43,7 @@ const mapDispatchToProps = (dispatch) => {
     clearPost: () => dispatch(clearPost()),
   };
 };
+
 Posts.propTypes = {
   posts: PropTypes.array,
   users: PropTypes.array,

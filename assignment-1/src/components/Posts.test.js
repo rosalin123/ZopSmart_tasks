@@ -1,20 +1,28 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import Posts from './Posts';
 import { findfindbyTestAttr, checkProps } from '../Utils/testUtil';
+import { indigo } from '@material-ui/core/colors';
+import { middleware } from '../store';
 
-const mockStore = configureMockStore();
-const store = mockStore({});
+const mockStore = configureMockStore(middleware);
 
-let wrapped = shallow(
-  <Provider store={store}>
-    <Posts />
-  </Provider>
-);
+const setUp = (initialState) => {
+  const store = mockStore(initialState);
+  const component = render(
+    <Provider store={store}>
+      <Posts />
+    </Provider>
+  );
+
+  return component;
+};
 
 describe('Posts Component', () => {
+  let component;
+
   describe('Checking prop types', () => {
     it('should not return a warning', () => {
       const expectedProps = {
@@ -28,6 +36,11 @@ describe('Posts Component', () => {
   });
 
   it('Posts should render without throwing an error', () => {
-    expect(wrapped).toMatchSnapshot();
+    const initialState = {
+      Posts: { loading: false, error: '', posts: [] },
+      Users: { loading: false, error: '', users: [] },
+    };
+    component = setUp(initialState);
+    expect(component).toMatchSnapshot();
   });
 });
