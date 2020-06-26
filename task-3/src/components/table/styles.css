@@ -1,0 +1,29 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid rgb(65, 62, 62) !important;
+  box-shadow: 1px 4px 22px -7px rgba(0, 0, 0, 0.75);
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+table input {
+  border: 0;
+  background-color: transparent;
+}
+
+table input:focus {
+  outline: none !important;
+}
