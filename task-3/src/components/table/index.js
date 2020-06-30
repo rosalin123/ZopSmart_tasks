@@ -89,8 +89,8 @@ export class Table extends Component {
                 {values[0].map((value, index) => {
                   return <th key={index}>Val {index + 1}</th>;
                 })}
-                <th key={100}>Sum</th>
-                <th key={101}>Product</th>
+                <th key={uuid()}>Sum</th>
+                <th key={uuid()}>Product</th>
               </tr>
               {tableData}
             </tbody>
