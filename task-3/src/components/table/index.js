@@ -35,10 +35,9 @@ export class Table extends Component {
   };
 
   handleChange = (e) => {
-    const { updateValues } = this.context;
+    const { updateValues, values, sumProduct } = this.context;
     let row = Number(e.target.dataset.row);
     let column = Number(e.target.dataset.column);
-    let { values, sumProduct } = this.context;
     let prevValue = values[row][column];
     values[row][column] = Number(e.target.value);
     sumProduct[row][0] =
