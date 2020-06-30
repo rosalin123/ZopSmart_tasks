@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styles.css';
 import { TableContext } from '../../contexts/TableContext';
+import uuid from 'uuid/dist/v1';
 
 export class Table extends Component {
   static contextType = TableContext;
@@ -72,8 +73,8 @@ export class Table extends Component {
                 </td>
               );
             })}
-            <td key={100}>{sumProduct[index1][0]}</td>
-            <td key={111}>{sumProduct[index1][1]}</td>
+            <td key={uuid()}>{sumProduct[index1][0]}</td>
+            <td key={uuid()}>{sumProduct[index1][1]}</td>
           </tr>
         );
       });
