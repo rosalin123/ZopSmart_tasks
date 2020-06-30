@@ -50,10 +50,13 @@ const useStyles = makeStyles(() => ({
 const TableContainer = () => {
   const classes = useStyles();
   const [showTable, setShowTable] = useState(false);
-  const { rows, columns, handleRows, handleColumns } = useContext(TableContext);
+  const { rows, columns, handleRows, handleColumns, clearValues } = useContext(
+    TableContext
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    clearValues();
     setShowTable(true);
   };
 

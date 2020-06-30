@@ -19,6 +19,11 @@ const TableContextProvider = (props) => {
     setValues([...values]);
     setSumProduct([...sumProduct]);
   };
+
+  const clearValues = () => {
+    setValues([]);
+    setSumProduct([]);
+  };
   return (
     <TableContext.Provider
       value={{
@@ -29,6 +34,7 @@ const TableContextProvider = (props) => {
         updateValues,
         handleRows,
         handleColumns,
+        clearValues,
       }}
     >
       {props.children}
