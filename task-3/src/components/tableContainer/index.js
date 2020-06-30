@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { useContext, useState } from 'react';
 import Table from '../table';
-import { Grid, Typography, Button } from '@material-ui/core';
+import { TableContext } from '../../contexts/TableContext';
+import { Grid, Typography, Button, makeStyles } from '@material-ui/core';
 import Header from '../header';
-import { withStyles } from '@material-ui/core';
 
-const styles = {
+const useStyles = makeStyles(() => ({
   contentStyles: {
     background: '#eceff1',
     width: '100%',
@@ -45,123 +45,121 @@ const styles = {
   tableStyles: {
     marginTop: '30px',
   },
-};
+}));
 
-export class TableContainer extends Component {
-  state = { rows: 0, columns: 0, showTable: false };
+const TableContainer = () => {
+  const classes = useStyles();
+  const [showTable, setShowTable] = useState(false);
+  const { rows, columns, handleRows, handleColumns } = useContext(TableContext);
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ showTable: true });
+    setShowTable(true);
   };
 
-  handleChange = (e, input) => {
-    this.setState(
-      { [input]: Number(e.target.value), showTable: false },
-      () => {}
-    );
-  };
+  return (
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      className={classes.contentStyles}
+    >
+      <Grid item className={classes.headerStyles} data-test="header">
+        <Header />
+      </Grid>
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <Grid
-        container
-        direction="column"
-        alignItems="center"
-        className={classes.contentStyles}
-      >
-        <Grid item className={classes.headerStyles} data-test="header">
-          <Header />
-        </Grid>
-
-        <Grid item className={classes.formStyles}>
-          {' '}
-          <form onSubmit={this.handleSubmit} data-test="form">
-            <Grid container direction="column" spacing={2}>
-              <Grid item>
-                <h3>Enter rows and columns to create a table</h3>
-              </Grid>
-              <Grid item>
-                <Grid
-                  container
-                  spacing={1}
-                  direction="column"
-                  className={classes.paddingStyles}
-                >
-                  {' '}
-                  <Grid item data-test="input">
-                    <Grid container spacing={2} justify="space-between">
+      <Grid item className={classes.formStyles}>
+        {' '}
+        <form onSubmit={handleSubmit} data-test="form">
+          <Grid container direction="column" spacing={2}>
+            <Grid item>
+              <h3>Enter rows and columns to create a table</h3>
+            </Grid>
+            <Grid item>
+              <Grid
+                container
+                spacing={1}
+                direction="column"
+                className={classes.paddingStyles}
+              >
+                {' '}
+                <Grid item data-test="input">
+                  <Grid container spacing={2} justify="space-between">
+                    {' '}
+                    <Grid item>
                       {' '}
-                      <Grid item>
-                        {' '}
-                        <Typography
-                          color="textSecondary"
-                          className={classes.typograpgyStyles}
-                        >
-                          Rows:
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        {' '}
-                        <input
-                          type="number"
-                          onChange={(e) => this.handleChange(e, 'rows')}
-                          className={classes.inputFieldStyles}
-                          data-test="rowsInput"
-                        />
-                      </Grid>
+                      <Typography
+                        color="textSecondary"
+                        className={classes.typograpgyStyles}
+                      >
+                        Rows:
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      {' '}
+                      <input
+                        type="number"
+                        onChange={(e) => {
+                          handleRows(e.target.value);
+                          setShowTable(false);
+                        }}
+                        className={classes.inputFieldStyles}
+                        data-test="rowsInput"
+                        value={rows}
+                      />
                     </Grid>
                   </Grid>
-                  <Grid item data-test="input">
-                    <Grid container justify="space-between">
+                </Grid>
+                <Grid item data-test="input">
+                  <Grid container justify="space-between">
+                    {' '}
+                    <Grid item>
                       {' '}
-                      <Grid item>
-                        {' '}
-                        <Typography
-                          color="textSecondary"
-                          className={classes.typograpgyStyles}
-                        >
-                          Columns:
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        <input
-                          type="number"
-                          onChange={(e) => this.handleChange(e, 'columns')}
-                          className={classes.inputFieldStyles}
-                          data-test="columnInput"
-                        />
-                      </Grid>
+                      <Typography
+                        color="textSecondary"
+                        className={classes.typograpgyStyles}
+                      >
+                        Columns:
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <input
+                        type="number"
+                        onChange={(e) => {
+                          handleColumns(e.target.value);
+                          setShowTable(false);
+                        }}
+                        className={classes.inputFieldStyles}
+                        data-test="columnInput"
+                        value={columns}
+                      />
                     </Grid>
                   </Grid>
                 </Grid>
               </Grid>
-
-              <Grid item>
-                {' '}
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  className={classes.submitButtonStyles}
-                  data-test="submit"
-                >
-                  Submit
-                </Button>
-              </Grid>
             </Grid>
-          </form>
-        </Grid>
-        <Grid item className={classes.tableStyles}>
-          {' '}
-          {this.state.showTable && (
-            <Table rows={this.state.rows} columns={this.state.columns} />
-          )}
-        </Grid>
-      </Grid>
-    );
-  }
-}
 
-export default withStyles(styles)(TableContainer);
+            <Grid item>
+              {' '}
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submitButtonStyles}
+                data-test="submit"
+              >
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </Grid>
+      <Grid item className={classes.tableStyles}>
+        {' '}
+        {showTable && <Table rows={rows} columns={columns} />}
+      </Grid>
+    </Grid>
+  );
+};
+
+export default TableContainer;

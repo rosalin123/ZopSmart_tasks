@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { updateValues } from '../../actions/tableActions';
-import { connect } from 'react-redux';
 import './styles.css';
+import { TableContext } from '../../contexts/TableContext';
 
 export class Table extends Component {
+  static contextType = TableContext;
+
   componentDidMount = () => {
-    const { rows, columns } = this.props;
+    const { rows, columns, updateValues } = this.context;
     const values = this.setInitialValues(rows, columns);
     const sumProduct = this.setSumProductValues(rows);
-    this.props.updateValues(values, sumProduct);
+    updateValues(values, sumProduct);
   };
 
   setInitialValues = (rows, columns) => {
@@ -33,9 +34,10 @@ export class Table extends Component {
   };
 
   handleChange = (e) => {
+    const { updateValues } = this.context;
     let row = Number(e.target.dataset.row);
     let column = Number(e.target.dataset.column);
-    let { values, sumProduct } = this.props;
+    let { values, sumProduct } = this.context;
     let prevValue = values[row][column];
     values[row][column] = Number(e.target.value);
     sumProduct[row][0] =
@@ -44,14 +46,14 @@ export class Table extends Component {
       product *= value;
       return product;
     }, 1);
-    this.props.updateValues(values, sumProduct);
+    updateValues(values, sumProduct);
   };
 
   render() {
-    let { values, sumProduct } = this.props;
+    const { values, sumProduct } = this.context;
 
     const tableData =
-      values !== null &&
+      values.length &&
       values.map((value1, index1) => {
         return (
           <tr key={index1} data-row="index">
@@ -62,7 +64,7 @@ export class Table extends Component {
                   <input
                     type="number"
                     onChange={(e) => this.handleChange(e)}
-                    defaultValue={0}
+                    defaultValue={values[index1][index2]}
                     data-row={index1}
                     data-column={index2}
                     data-test="input"
@@ -77,7 +79,7 @@ export class Table extends Component {
       });
 
     return (
-      values !== null && (
+      values.length && (
         <div>
           {' '}
           <table style={{ width: '100%' }}>
@@ -99,14 +101,4 @@ export class Table extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  values: state.Values.values,
-  sumProduct: state.Values.sumProduct,
-});
-
-export const mapDispatchToProps = (dispatch) => ({
-  updateValues: (values, sumProduct) =>
-    dispatch(updateValues(values, sumProduct)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default Table;
