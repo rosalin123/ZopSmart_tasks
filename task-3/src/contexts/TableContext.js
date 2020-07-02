@@ -2,10 +2,10 @@ import React, { createContext, useState } from 'react';
 export const TableContext = createContext();
 
 const TableContextProvider = (props) => {
-  const [rows, setRows] = useState('');
-  const [columns, setColumns] = useState('');
-  const [values, setValues] = useState([]);
-  const [sumProduct, setSumProduct] = useState([]);
+  const [rows, setRows] = useState(0);
+  const [columns, setColumns] = useState(0);
+  const [values, setValues] = useState([[]]);
+  const [sumProduct, setSumProduct] = useState([[]]);
 
   const handleRows = (rows) => {
     setRows(rows);
@@ -20,10 +20,22 @@ const TableContextProvider = (props) => {
     setSumProduct([...sumProduct]);
   };
 
-  const clearValues = () => {
-    setValues([]);
-    setSumProduct([]);
+  const setInitialValues = () => {
+    let values = [];
+    let sumProduct = [];
+    for (let i = 0; i < rows; i++) {
+      let row = [];
+      sumProduct.push([0, 0]);
+      for (let j = 0; j < columns; j++) {
+        row.push(0);
+      }
+      values.push(row);
+    }
+
+    setValues([...values]);
+    setSumProduct([...sumProduct]);
   };
+
   return (
     <TableContext.Provider
       value={{
@@ -34,7 +46,7 @@ const TableContextProvider = (props) => {
         updateValues,
         handleRows,
         handleColumns,
-        clearValues,
+        setInitialValues,
       }}
     >
       {props.children}

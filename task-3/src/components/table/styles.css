@@ -1,11 +1,11 @@
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
   background: white;
   border-radius: 5px;
-  border: 1px solid rgb(65, 62, 62) !important;
+  border: 1px solid rgb(45, 39, 121) !important;
   box-shadow: 1px 4px 22px -7px rgba(0, 0, 0, 0.75);
+  overflow: scroll;
 }
 
 td,
@@ -26,4 +26,11 @@ table input {
 
 table input:focus {
   outline: none !important;
+}
+
+.scrollit {
+  overflow-x: scroll;
+  max-width: 90vw;
+  max-height: 800px;
+  margin: 40px;
 }
