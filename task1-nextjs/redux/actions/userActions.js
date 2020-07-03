@@ -7,7 +7,7 @@ import {
   GET_USER_FAILURE,
   CLEAR_USER,
 } from '../actions/actionConstants';
-import * as users_api from '../Utils/usersApiUtil';
+import * as users_api from '../../Utils/usersApiUtil';
 
 //all users
 

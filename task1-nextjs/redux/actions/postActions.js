@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionConstants';
-import * as posts_api from '../Utils/postsApiUtil';
+import * as posts_api from '../../Utils/postApiUtil';
 
 //all posts
 export const fetchPostsRequest = () => ({
